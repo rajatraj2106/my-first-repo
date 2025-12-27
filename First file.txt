@@ -1,0 +1,25 @@
+Open "Git cmd"
+--------------
+GIT init
+Git status
+ls -al
+
+
+I-ACP (Init, Add, Commit, Push)
+
+Local machine
+--------------
+- Working Tree (git init)
+- Stage Area  (git add)
+- Local repository  (git commit)
+
+Remote repository
+-----------------
+GitHub (git push)
+
+
+- Default branch - master branch
+- In local repo, developers will create their own feature branch and MERGE it to Master branch
+- Master branch on local machine is handled by developers
+- Master branch on github is handled by the GITHUB
+

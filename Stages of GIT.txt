@@ -1,0 +1,166 @@
+Stages of GIT
+-------------
+Working area : where we write the code
+Staging area: where we track the code
+Local Repository: where we store the code
+Remote Repository: where we store the code in Remote Location (Github)
+
+Instal gitbash or Launch RedHat EC2 instance and login
+
+sudo -s
+
+mkdir gitproject
+
+cd gitproject
+
+yum install git -y
+
+git -v
+
+git status --> You get error, because this is not initialized yet
+
+git init  --> initialize git , this is local repo. .git directory will be create which contain files/dir maintained by git. The .git directory contains metadata and the entire history of the project,
+
+git status
+
+
+touch index.html
+--> it has created locally, now move from working directory to staging area
+
+vi index.html
+this is sample file
+
+git status
+--> this is not tracked, Not tracked files shows in red color, if you want to track file move to staging area
+
+git add index.html
+--> command to move to staging area
+
+git status
+--> now file is in staging area, tracked files shows green color, and now move to local repository
+
+
+-> you see root user in commit log --> in real time we should we our name not root
+
+This is User Configuration
+
+git config user.name "reyaz"
+git config user.email "reyaz@gmail.com"
+
+git config user.name  [to see who is the user]
+git config user.email
+
+
+Another way of adding user configuration
+
+git config --list
+git config --global --edit
+or
+cd /root
+cat .gitconfig
+
+
+
+git commit -m "my first commit" index.html
+--> now file is in local repository
+
+git status
+
+what ever we do track, committing file etc will be in .git directory
+
+--> now another example to create a file and add to staging and repo
+
+touch hello.txt
+git status
+git add hello.txt
+git commit -m "My second commit" hello.txt
+git status
+
+
+touch test.txt
+git status
+git add test.txt
+git commit -m "My third commit" test.txt
+git status
+
+--> create mode 100644  means a normal file
+--> 100755 means executable file
+------------------------------------------
+
+git log --> to see how many commits history
+git log --oneline --> to see less lines
+git log --oneline -2 --> to see last 2 commits history
+git show --> Show the changes of the last commit
+git show 150eb87 --> to see which file is committed for this id
+
+git log -p -2  --> shows last 2 commits with diff
+git log --stat --> summary of the changes
+
+git log    --pretty=oneline --> to see less info about commit details in singleline
+git log --pretty=format:"%h-%an,%ar:%s"   [h = hash/commitnumber, an = authorname, ar = time, s = commit message ]
+git shortlog --> Summarize git log output
+
+vi index.html
+this is first line
+
+git add index.html
+git commit -m "first line" index.html
+
+
+git blame index.html --> Show who changed which line in a file
+
+-------------------------------------
+--> modify index.html file
+
+vi index.html
+this is second line .. new line
+git add index.html
+git commit -m "new line" index.html
+
+Now see the difference between the commits
+
+git log --oneline -2
+git diff 150eb87..1fg0e787  -- see the diff between commits
+
+Vi index.html
+This is the third line
+
+git diff  ------> compare changes working directory to staging area
+
+git add index.html
+
+git diff --staged --> compare changes staging to local repo
+
+git commit -m "comparison" index.html
+
+vi index.html
+change something
+
+git diff HEAD ----compare changes local directory to local repo [HEAD in caps]
+
+---------------------------------------------
+
+-
+vi index.html
+added a new line
+
+git add index.html
+git commit -m "added new line" index.html
+
+git log --oneline --author='reyaz'  --- this show only committed from certain person
+git log --author="reyaz"
+
+--> now create a new file
+touch file1
+git add file1
+git commit -m "file1 commit" file1
+git status
+git log
+--> now we can see Reyaz username
+
+=========================
+Git Amend - Change the commit history
+=========================
+if you want to change the last commit history
+
+git commit --amend -m "an updated commit message"   --> this is replace latest commit message
